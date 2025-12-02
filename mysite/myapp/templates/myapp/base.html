@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Food App{% endblock %}</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="p-6">
+
+    <!-- NAVBAR -->
+    <nav class="flex justify-between items-center bg-gray-100 p-4 rounded-lg mb-6 shadow-sm">
+        <a href="/" class="text-xl font-bold">foodapp</a>
+        <div class="flex gap-6 text-lg">
+            <a href="/" class="hover:text-blue-500">Home</a>
+            <a href="/" class="hover:text-blue-500">Menu</a>
+        </div>
+    </nav>
+
+    <!-- PAGE CONTENT -->
+    <div class="container mx-auto">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
