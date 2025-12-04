@@ -15,7 +15,7 @@
             <a href="{% url 'myapp:detail' id=item.id %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200">
                 Details
             </a>
-            <a href="" class="inline-block bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200">
+            <a href="{% url 'myapp:delete_item' delete_id=item.id %}" class="inline-block bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200">
                 Delete
             </a>
             <a href="{% url 'myapp:update_item' update_id=item.id %}" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors duration-200">

@@ -53,12 +53,32 @@ def update(request, update_id):
         if form.is_valid():
             form.save()
             return redirect('myapp:index')
-
-
     context = {
         'form': form,
         'item': item,
         'id': update_id,
     }
-
     return render(request, 'myapp/update.html',context)
+
+
+
+def delete(request, delete_id):
+    item = get_object_or_404(Item, id=delete_id)
+
+    if request.method == "POST":  # user confirmed deletion
+        item.delete()
+        return redirect('myapp:index')
+
+    context = {
+        'item':item,
+    }
+
+    # GET request → show confirmation page
+    return render(request, 'myapp/confirm_delete.html', context)
+
+
+
+
+
+
+
