@@ -41,3 +41,24 @@ def create_items(request):
         'form':form
     }
     return render(request,'myapp/item-form.html', context)
+
+
+def update(request, update_id):
+    item = get_object_or_404(Item, id=update_id)
+
+    form = ItemForm(request.POST or None ,instance=item)
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:index')
+
+
+    context = {
+        'form': form,
+        'item': item,
+        'id': update_id,
+    }
+
+    return render(request, 'myapp/update.html',context)

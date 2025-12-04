@@ -1,0 +1,18 @@
+{% extends "myapp/base.html" %}
+
+{% block title %}My Website{% endblock %}
+
+{% block content %}
+
+<h1>This is my update page</h1>
+
+<h2> this is the id we gonna update {{ item }} and {{ id }}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button> Submit </button>
+</form>
+
+
+{% endblock %}
