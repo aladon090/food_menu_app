@@ -6,6 +6,6 @@ app_name='myapp'
 
 urlpatterns = [
     path('',views.index,name='index'),
-    path('book/',views.book),
     path('<int:id>',views.detail,name='detail'),
+    path('add/',views.create_items, name='create_item'),
 ]

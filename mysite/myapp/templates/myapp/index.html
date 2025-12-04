@@ -3,25 +3,28 @@
 {% block title %}My Website{% endblock %}
 
 {% block content %}
+<h1 class="text-2xl font-bold mb-6">Items</h1>
 
-<h1 class="text-3xl font-bold mb-4">Welcome to my website</h1>
-<p class="mb-6">This is a simple HTML page.</p>
-
-<h2 class="text-2xl font-semibold mb-4">Items:</h2>
-
-<ul class="space-y-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     {% for item in list_items %}
-    <li class="p-4 border rounded-lg shadow-sm">
-        <img src="{{ item.item_image }}" class="w-48 mb-2">
-        <a href="{% url 'myapp:detail' item.id %}" class="text-blue-600 font-semibold text-lg">
-            {{ item.item_name }}
-        </a>
-        <p>{{ item.item_desc }}</p>
-        <p class="font-medium">${{ item.item_price }}</p>
-    </li>
+    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        <img src="{{ item.item_image }}" alt="{{ item.item_name }}" class="w-full h-48 object-cover">
+        <div class="p-4">
+            <h2 class="text-lg font-semibold mb-2">{{ item.item_name }}</h2>
+            <p class="text-gray-700 mb-3">Price: ${{ item.item_price }}</p>
+            <a href="{% url 'myapp:detail' id=item.id %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-200">
+                Details
+            </a>
+            <a href="" class="inline-block bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-200">
+                Delete
+            </a>
+            <a href="" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors duration-200">
+                Edit
+            </a>
+
+        </div>
+    </div>
     {% endfor %}
-</ul>
+</div>
 
 {% endblock %}
-
-

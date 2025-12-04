@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Item
+from .forms import ItemForm
 
 # Create your views here.
 
@@ -9,21 +10,34 @@ def index(request):
     list_items = Item.objects.all()
     #getting the context to parse the html with the method
     context = {
-        'list_items': list_items
+        'list_items': list_items # these two should be the same to prevent errors
     }
+    print(context)
 
     return render(request,template_name="myapp/index.html",context=context)
 
+
 def detail(request, id):
-    items = Item.objects.filter(id=id)
-    print(items)
-    food = Item.objects.filter(item_name='eggs')
+    print(id)
+    item = get_object_or_404(Item, id=id)  # fetch a single item or 404 if not found
+
     context = {
-        'item':items,
-        'food':food
+        'item': item,  # match the template variable
     }
 
-    return render(request,template_name='myapp/food.html',context=context)
+    return render(request, 'myapp/details.html', context)
 
-def book(request):
-    return HttpResponse("<h2>Book in today</h2>")
+def create_items(request):
+    # if request is GET then its stay none if post then goes ahead
+    form = ItemForm(request.POST or None)
+
+    if request.method=="POST":
+
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:index')
+    # if its get it return the the form on the page
+    context = {
+        'form':form
+    }
+    return render(request,'myapp/item-form.html', context)

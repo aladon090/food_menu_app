@@ -7,16 +7,26 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
+<!-- Nav bar CONTENT -->
 <body class="p-6">
+<nav class="bg-blue-500 text-white shadow">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between items-center h-12">
+            <!-- Logo -->
+            <a href="/" class="text-xl font-semibold hover:text-gray-200 transition">
+                foodapp
+            </a>
 
-    <!-- NAVBAR -->
-    <nav class="flex justify-between items-center bg-gray-100 p-4 rounded-lg mb-6 shadow-sm">
-        <a href="/" class="text-xl font-bold">foodapp</a>
-        <div class="flex gap-6 text-lg">
-            <a href="/" class="hover:text-blue-500">Home</a>
-            <a href="/" class="hover:text-blue-500">Menu</a>
+            <!-- Menu -->
+            <div class="space-x-6">
+                <a href="/" class="hover:text-gray-200 transition">Home</a>
+                <a href="{% url 'myapp:create_item' %}" class="hover:text-gray-200 transition">add</a>
+                <a href="/" class="hover:text-gray-200 transition">Menu</a>
+            </div>
         </div>
-    </nav>
+    </div>
+</nav>
+
 
     <!-- PAGE CONTENT -->
     <div class="container mx-auto">
